@@ -1,5 +1,5 @@
 # InterBankTransaction
-This project is an example illustrating how to implement distributed transaction by using RocketMQ and Redis.
+This project is an example illustrating how to implement distributed transaction.
 We employed the design pattern of reliable message and try-best-to-deliver message to fullfill the mechanism of transaction compensation.<br>
 <br>
 *Architecture: SpringBoot + RocketMQ + Redis (Cluster [Redisson Client API] ) + ShardingJDBC<br>
