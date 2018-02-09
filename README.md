@@ -25,5 +25,6 @@ Request Merger is using the typical way of thinking in the area of computer scie
 4. Verify the record in table by hint query `select * from BANK_A_ACCOUNT_0 where USER_NAME = 'User 68';`, you will see balance is reduced.<br>
 5. Verify the record in table by hint query `select * from BANK_B_ACCOUNT_0 where USER_NAME = 'User 68';`, you will see balance is incresed.<br>
 <br>
+
 ## Warning:<br>
 If you fire too many threads by using Jmeter, please do not shutdown/kill the running application. All of the message will be queued in MQ Server, please ensure all of the queued message must be consumed before stopping the application!<br>
