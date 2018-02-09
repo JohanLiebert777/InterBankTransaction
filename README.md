@@ -16,3 +16,8 @@ Request Merger is using the typical way of thinking in the area of computer scie
 (Using Jmeter, fired 1000 threads)<br>
 <br>
 *Redis becomes the bottelneck of throughput. Our Redis Cluster can only afford 250-270 QPS.<br>
+<br>
+
+#How to use:#
+
+
