@@ -1,0 +1,45 @@
+spring:
+  datasource:
+    primary:
+      url: jdbc:mysql://101.132.162.14:3306/TEST_DS_0
+      username: root
+      password: root
+  jpa:
+    database: mysql
+    show-sql: false
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: com.distributed.transaction.conf.db.naming.strategy.MysqlUpperCaseStrategy
+  aop:
+    auto: true
+  extends:
+    rocketmq:
+      namesrv-addr: 47.96.133.164:9876;101.132.186.26:9876
+      instance-name: distributed-transaction
+      producer-group-name: dt-producer-group
+      consumer-group-name: dt-consumer-group
+      recover-consumer-group-name: dt-recover-consumer-group
+      producer-queue-size: 64
+    redis:
+      max-redirects: 5
+      max-total: 100
+      max-idle: 20
+      max-wait-millis: 10000
+      cluster-nodes:
+        - master: redis://106.14.210.158:6379
+          slave1: redis://106.14.210.158:6380
+          slave2:  redis://106.14.210.158:6381
+        - master: redis://101.132.162.14:6379
+          slave1: redis://101.132.162.14:6380
+          slave2:  redis://101.132.162.14:6381
+      connect-timeout: 30000
+      cache-expiration: 30000
+    stream-limiter:
+      domain-rate:
+      - domain: transfer
+        rate: 500
+      - domain: account
+        rate: 1000
+      - domain: misc
+        rate: 1000
