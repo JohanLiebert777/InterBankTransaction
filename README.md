@@ -18,6 +18,9 @@ Request Merger is using the typical way of thinking in the area of computer scie
 *Redis becomes the bottelneck of throughput. Our Redis Cluster can only afford 250-270 QPS.<br>
 <br>
 
-#How to use:#
-
-
+## How to use:<br>
+1. Start the application.<br>
+2. Hint the URL `account/batchMoveToBankB?userName=User 68&amount=1` (with Request Merger)<br>
+3. Hint the URL `account/moveToBankB?userName=User 68&amount=1` (without Request Merger)<br>
+4. Verify the record in table by hint query `select * from BANK_A_ACCOUNT_0 where USER_NAME = 'User 68';`, you will see balance is reduced.<br>
+5. Verify the record in table by hint query `select * from BANK_B_ACCOUNT_0 where USER_NAME = 'User 68';`, you will see balance is incresed.<br>
