@@ -5,4 +5,4 @@ Architecture: SpringBoot + RocketMQ + Redis (Cluster [Redisson Client API] ) + S
 Database: Mysql<br>
 Transaction Compensation: Reliable Message + Try-Best-To-Deliver Message<br>
 
-To improve the throughput (QPS) of transfering money, we implemented the Request Merger (utility) by which we are able to queue the incoming requests. Whenever the size of buffer or the timeout is reached, the queued requests will be sent to service to proceed the business process.
+To improve the throughput (QPS) of transfering money, we implemented the 'Request Merger (utility)' by which we are able to queue the incoming requests. Whenever the size of buffer or the timeout is reached, the queued requests will be sent to service to proceed the business process.
