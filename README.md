@@ -4,7 +4,7 @@ We employed the design pattern of reliable message and try-best-to-deliver messa
 <br>
 *Architecture: SpringBoot + RocketMQ + Redis (Cluster [Redisson Client API] ) + ShardingJDBC<br>
 *Transaction Compensation: Reliable Message + Try-Best-To-Deliver Message<br>
-*StreamLimiter: Bucket Token Algorithm (provided by RateLimitor of Google Guava)
+*StreamLimiter: Bucket Token Algorithm (provided by RateLimitor of Google Guava)<br>
 *Database: Mysql<br>
 <br>
 To improve the throughput (QPS) of transfering money, we implemented the `Request Merger (utility)` by which we are able to queue the incoming requests. Whenever the size of buffer or the timeout is reached, the queued requests will be sent to service to proceed the business process.<br>
