@@ -10,20 +10,23 @@ We employed the design pattern of reliable message and try-best-to-deliver messa
 To improve the throughput (QPS) of transfering money, we implemented the `Request Merger (utility)` by which we are able to queue the incoming requests. Whenever the size of buffer or the timeout is reached, the queued requests will be sent to service to proceed the business process.<br>
 Request Merger is using the typical way of thinking in the area of computer science when solving problems. It is to trade space for time.<br>
 <br>
-*Throughput of Query: 250-270 (QPS)<br>
-*Throughput of Transfer Money (without Request Merger): 10-15 (QPS)<br>
-*Throughput of Transfer Money (with Request Merger): 50-60 (QPS)<br>
-(Using Jmeter, fired 1000 threads)<br>
+*Throughput of Query: `250-270` (QPS)<br>
+*Throughput of Transfer Money (without Request Merger): `10-15` (QPS)<br>
+*Throughput of Transfer Money (with Request Merger): `50-60` (QPS)<br>
+(Using Jmeter, fired `1000` threads)<br>
 <br>
-*Redis becomes the bottelneck of throughput. Our Redis Cluster can only afford 250-270 QPS.<br>
+*Redis becomes the bottelneck of throughput. Our Redis Cluster can only afford `250-270` QPS.<br>
 <br>
 
 ## How to use:<br>
-1. Start the application.<br>
-2. Hint the URL `account/batchMoveToBankB?userName=User 68&amount=1` (with Request Merger)<br>
-3. Hint the URL `account/moveToBankB?userName=User 68&amount=1` (without Request Merger)<br>
-4. Verify the record in table by hint query `select * from BANK_A_ACCOUNT_0 where USER_NAME = 'User 68';`, you will see balance is reduced.<br>
-5. Verify the record in table by hint query `select * from BANK_B_ACCOUNT_0 where USER_NAME = 'User 68';`, you will see balance is incresed.<br>
+Start the application.<br>
+Pure query: Hint the URL `account/findByUserNameInBankA?userName=User 68`<br>
+Business Process:<br>
+  *step 1 or step 2, only choose one.
+  1. Hint the URL `account/batchMoveToBankB?userName=User 68&amount=1` (with Request Merger)<br>
+  2. Hint the URL `account/moveToBankB?userName=User 68&amount=1` (without Request Merger)<br>
+  3. Verify the record in table by hint query `select * from BANK_A_ACCOUNT_0 where USER_NAME = 'User 68';`, you will see balance is reduced.<br>
+  4. Verify the record in table by hint query `select * from BANK_B_ACCOUNT_0 where USER_NAME = 'User 68';`, you will see balance is incresed.<br>
 <br>
 
 ## Warning:<br>
