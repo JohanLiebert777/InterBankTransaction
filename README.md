@@ -10,7 +10,8 @@ We employed the design pattern of reliable message and try-best-to-deliver messa
 To improve the throughput (QPS) of transfering money, we implemented the `Request Merger (utility)` by which we are able to queue the incoming requests. Whenever the size of buffer or the timeout is reached, the queued requests will be sent to service to proceed the business process.<br>
 <br>
 *Throughput of Query: 250-270 (QPS)<br>
-*Throughput of Transfer Money: 50-60 (QPS)<br>
+*Throughput of Transfer Money (with Request Merger): 50-60 (QPS)<br>
+*Throughput of Transfer Money (without Request Merger): 10-15 (QPS)<br>
 (Using Jmeter, fired 1000 threads)<br>
 <br>
 *Redis becomes the bottelneck of throughput. Our Redis Cluster can only afford 250-270 QPS.<br>
