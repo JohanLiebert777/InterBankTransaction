@@ -7,7 +7,7 @@ We employed the design pattern of reliable message and try-best-to-deliver messa
 *StreamLimiter: Bucket Token Algorithm (provided by RateLimitor of Google Guava)<br>
 *Database: Mysql<br>
 <br>
-To improve the throughput (QPS) of transfering money, we implemented the `Request Merger (utility)` by which we are able to queue the incoming requests. Whenever the size of buffer or the timeout is reached, the queued requests will be sent to service to proceed the business process.<br>
+To improve the throughput (QPS/TPS) of transfering money, we implemented the `Request Merger (utility)` by which we are able to queue the incoming requests. Whenever the size of buffer or the timeout is reached, the queued requests will be sent to service to proceed the business process.<br>
 Request Merger is using the typical way of thinking in the area of computer science when solving problems. It is to trade space for time.<br>
 <br>
 *Throughput of Query: `250-270` (QPS)<br>
